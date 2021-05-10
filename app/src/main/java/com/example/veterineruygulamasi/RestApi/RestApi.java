@@ -1,6 +1,7 @@
 package com.example.veterineruygulamasi.RestApi;
 
 import com.example.veterineruygulamasi.Models.AnswersModel;
+import com.example.veterineruygulamasi.Models.AsiModel;
 import com.example.veterineruygulamasi.Models.AskQuestionModel;
 import com.example.veterineruygulamasi.Models.DeleteAnswerModel;
 import com.example.veterineruygulamasi.Models.KampanyaModel;
@@ -43,4 +44,12 @@ public interface RestApi {
 
     @GET("/veterinerservis/kampanya.php")
     Call<List<KampanyaModel>> getKampanya();
+
+    @FormUrlEncoded
+    @POST("/veterinerservis/asitakip.php")
+    Call<List<AsiModel>> getAsi(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("/veterinerservis/gecmisasi.php")
+    Call<List<AsiModel>> getGecmisAsi(@Field("id") String id,@Field("petid") String petid);
 }

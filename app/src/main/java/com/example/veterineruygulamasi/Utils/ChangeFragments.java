@@ -1,6 +1,7 @@
 package com.example.veterineruygulamasi.Utils;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -17,6 +18,16 @@ public class ChangeFragments {
         this.context = context;
     }
     public void change(Fragment fragment){
+
+        ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,fragment,"fragment")
+                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+
+    }
+    public void changeParametre(Fragment fragment,String petId)
+    {
+        Bundle bundle = new Bundle();
+        bundle.putString("petid",petId);
+        fragment.setArguments(bundle);
 
         ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,fragment,"fragment")
                 .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();

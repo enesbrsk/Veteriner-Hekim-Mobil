@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.AsiFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.squareup.timessquare.CalendarPickerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/calenderPickerView"
+        android:layout_height="match_parent">
 
+    </com.squareup.timessquare.CalendarPickerView>
 </FrameLayout>

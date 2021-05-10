@@ -35,7 +35,8 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     public View view;
-    private LinearLayout petlerimLayout,sorusorlinearlayout,cevapLayout,kampanyaLinearLayout;
+    private LinearLayout petlerimLayout,sorusorlinearlayout,cevapLayout,kampanyaLinearLayout,asiTakipLayout
+            ,sanalKarneLayout;
     private ChangeFragments changeFragments;
     private GetSharedPreferences getSharedPreferences;
     private String id;
@@ -57,6 +58,8 @@ public class HomeFragment extends Fragment {
         sorusorlinearlayout =(LinearLayout) view.findViewById(R.id.sorusorlinearlayout);
         cevapLayout =(LinearLayout) view.findViewById(R.id.cevapLayout);
        petlerimLayout=(LinearLayout)view.findViewById(R.id.petlerimLayout);
+        asiTakipLayout =(LinearLayout)view.findViewById(R.id.asiTakipLayout);
+        sanalKarneLayout=(LinearLayout)view.findViewById(R.id.sanalKarneLayout);
        answerList = new ArrayList<>();
         kampanyaLinearLayout= (LinearLayout) view.findViewById(R.id.kampanyaLinearLayout);
 
@@ -96,7 +99,19 @@ public class HomeFragment extends Fragment {
                 changeFragments.change(new KampanyaFragment());
             }
         });
+        asiTakipLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragments.change(new AsiFragment());
+            }
+        });
+        sanalKarneLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragments.change(new SanalKarnePetler());
 
+            }
+        });
     }
 
     public void openQuestionAlert()

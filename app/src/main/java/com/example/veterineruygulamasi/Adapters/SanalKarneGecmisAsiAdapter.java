@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.veterineruygulamasi.Fragments.AsiDetayFragment;
+import com.example.veterineruygulamasi.Models.AsiModel;
 import com.example.veterineruygulamasi.Models.PetModel;
 import com.example.veterineruygulamasi.R;
 import com.example.veterineruygulamasi.Utils.ChangeFragments;
@@ -20,15 +21,15 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.example.veterineruygulamasi.R.layout.petlistitemlayout;
+import static com.example.veterineruygulamasi.R.layout.sanalkarnegecmislayout;
 import static com.example.veterineruygulamasi.R.layout.sanalkarnepetlayout;
 
-public class SanalKarnePetAdapter extends RecyclerView.Adapter<SanalKarnePetAdapter.ViewHolder>{
+public class SanalKarneGecmisAsiAdapter extends RecyclerView.Adapter<SanalKarneGecmisAsiAdapter.ViewHolder>{
 
-    List<PetModel> list;
+    List<AsiModel> list;
     Context context;
 
-    public SanalKarnePetAdapter(List<PetModel> list, Context context) {
+    public SanalKarneGecmisAsiAdapter(List<AsiModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -37,28 +38,20 @@ public class SanalKarnePetAdapter extends RecyclerView.Adapter<SanalKarnePetAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-       View view = LayoutInflater.from(context).inflate(sanalkarnepetlayout,parent,false);
+       View view = LayoutInflater.from(context).inflate(sanalkarnegecmislayout,parent,false);
        return new ViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.sanalkarnePetText.setText(list.get(position).getPetisim().toString());
-        holder.sanalKarneBilgiText.setText(list.get(position).getPetisim().toString()+" isimli" + list.get(position).getPettur()+" Türüne " + list.get(position).getPetcins()+" cinsine" +
-                " ait petiniz geçmiş aşıları " +
-                "görmek için tıklayınız...");
 
+        holder.sanalKarneGecmisAsiTexxt.setText(list.get(position).getAsiisim().toString()+" Aşısı Yapıldı");
 
-        Picasso.get().load(list.get(position).getPetresim()).into(holder.sanalKarnePetImage);
+        holder.sanalKarneGecmisAsiBilgi.setText(list.get(position).getPetisim().toString()+" İsimli Petinize" +
+                list.get(position).getAsitarih()+" Tarihinde"+ list.get(position).getAsiisim()+ " Aşısı Yapılmıştır");
 
-        holder.sanalLayoutCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ChangeFragments changeFragments = new ChangeFragments(context);
-                changeFragments.changeParametre(new AsiDetayFragment(),list.get(position).getPetid());
-            }
-        });
+        Picasso.get().load(list.get(position).getPetresim().toString()).into(holder.sanalKarneGecmisAsiImage);
 
     }
 
@@ -69,20 +62,19 @@ public class SanalKarnePetAdapter extends RecyclerView.Adapter<SanalKarnePetAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView sanalkarnePetText,sanalKarneBilgiText;
-        CircleImageView sanalKarnePetImage;
-        CardView sanalLayoutCardView;
+        TextView sanalKarneGecmisAsiTexxt,sanalKarneGecmisAsiBilgi;
+        CircleImageView sanalKarneGecmisAsiImage;
+
 
         //her pet için item
         public ViewHolder(View itemView) {
             super(itemView);
 
 
-            sanalkarnePetText = (TextView) itemView.findViewById(R.id.sanalkarnePetText);
-            sanalKarneBilgiText =(TextView)  itemView.findViewById(R.id.sanalKarneBilgiText);
+            sanalKarneGecmisAsiTexxt = (TextView) itemView.findViewById(R.id.sanalKarneGecmisAsiTexxt);
+            sanalKarneGecmisAsiBilgi =(TextView)  itemView.findViewById(R.id.sanalKarneGecmisAsiBilgi);
+            sanalKarneGecmisAsiImage =(CircleImageView)  itemView.findViewById(R.id.sanalKarneGecmisAsiImage);
 
-            sanalKarnePetImage =(CircleImageView)  itemView.findViewById(R.id.sanalKarnePetImage);
-            sanalLayoutCardView = itemView.findViewById(R.id.sanalLayoutCardView);
 
 
 

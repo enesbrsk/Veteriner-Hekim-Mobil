@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp"
@@ -23,42 +23,30 @@
 
 
             <TextView
+                android:id="@+id/petİsimText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="Veterinere sormak istediğini soruyu lütfen giriniz..."
                 android:textColor="#fb4040"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/asiTakipCircleImageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/petAsiTakipBilgiText"
                 android:layout_width="match_parent"
-
-                android:layout_height="100dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="40dp">
-
-                <EditText
-
-                    android:background="@drawable/edittextbackground"
-                    android:id="@+id/sorusoredittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Kullanıcı Adını Giriniz..." />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/sorusorbuton"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittextbackground"
-
-                android:text="Soru Sor" />
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textColor="#122f3d"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

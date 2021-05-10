@@ -40,6 +40,7 @@ public class GirisYapActivity extends AppCompatActivity {
         loginButton=(Button)findViewById(R.id.loginButton);
 
     }
+
     public void click(){
 
         loginButton.setOnClickListener(new View.OnClickListener() {

@@ -1,8 +1,7 @@
 package com.example.veterineruygulamasi.RestApi;
 
-import android.util.Log;
-
 import com.example.veterineruygulamasi.Models.AnswersModel;
+import com.example.veterineruygulamasi.Models.AsiModel;
 import com.example.veterineruygulamasi.Models.AskQuestionModel;
 import com.example.veterineruygulamasi.Models.DeleteAnswerModel;
 import com.example.veterineruygulamasi.Models.KampanyaModel;
@@ -64,4 +63,17 @@ public class ManagerAll extends BaseManager{
         Call<List<KampanyaModel>> x = getRestApi().getKampanya();
         return  x ;
     }
+
+    public Call<List<AsiModel>> getAsi(String id)
+    {
+        Call<List<AsiModel>> x = getRestApi().getAsi(id);
+        return  x ;
+    }
+
+    public Call<List<AsiModel>> getGecmisAsi(String id,String pet_id)
+    {
+        Call<List<AsiModel>> x = getRestApi().getGecmisAsi(id,pet_id);
+        return  x ;
+    }
+
 }

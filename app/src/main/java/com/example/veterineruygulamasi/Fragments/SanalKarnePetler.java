@@ -3,63 +3,85 @@ package com.example.veterineruygulamasi.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.veterineruygulamasi.Adapters.PetAdapter;
+import com.example.veterineruygulamasi.Adapters.SanalKarnePetAdapter;
+import com.example.veterineruygulamasi.Models.PetModel;
 import com.example.veterineruygulamasi.R;
+import com.example.veterineruygulamasi.RestApi.ManagerAll;
+import com.example.veterineruygulamasi.Utils.ChangeFragments;
+import com.example.veterineruygulamasi.Utils.GetSharedPreferences;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SanalKarnePetler#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class SanalKarnePetler extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView sanalKarnePetler;
+    private View view;
+    private SanalKarnePetAdapter sanalKarnePetAdapter;
 
-    public SanalKarnePetler() {
-        // Required empty public constructor
-    }
+    private List<PetModel> petList;
+    private ChangeFragments changeFragments;
+    private String mus_id;
+    private GetSharedPreferences getSharedPreferences;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SanalKarnePetler.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SanalKarnePetler newInstance(String param1, String param2) {
-        SanalKarnePetler fragment = new SanalKarnePetler();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sanal_karne_petler, container, false);
+        view = inflater.inflate(R.layout.fragment_user_pets, container, false);
+        tanimla();
+        getPets(mus_id);
+        return view;
+    }
+    public void tanimla(){
+        petList = new ArrayList<>();
+        sanalKarnePetler = view.findViewById(R.id.petlistrecylerview);
+        RecyclerView.LayoutManager mng = new GridLayoutManager(getContext(),1);
+        sanalKarnePetler.setLayoutManager(mng);
+        changeFragments = new ChangeFragments(getContext());
+        getSharedPreferences = new GetSharedPreferences(getActivity());
+        mus_id = getSharedPreferences.getSession().getString("id",null);
+    }
+
+    public void getPets(String mus_id)
+    {
+        Call<List<PetModel>> req= ManagerAll.getInstance().getPets(mus_id);
+        req.enqueue(new Callback<List<PetModel>>() {
+            @Override
+            public void onResponse(Call<List<PetModel>> call, Response<List<PetModel>> response) {
+                if (response.body().get(0).isTf())
+                {
+                    petList = response.body();
+                    sanalKarnePetAdapter = new SanalKarnePetAdapter(petList,getContext());
+                    sanalKarnePetler.setAdapter(sanalKarnePetAdapter);
+
+
+
+
+                }else {
+                    Toast.makeText(getContext(), "Sistemde pet bulunmamaktadır", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PetModel>> call, Throwable t) {
+                Toast.makeText(getContext(), "Hata", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

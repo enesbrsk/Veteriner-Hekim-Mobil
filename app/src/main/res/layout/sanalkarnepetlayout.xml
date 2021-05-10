@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activities.GirisYapActivity">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/sanalLayoutCardView"
+        android:clickable="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp"
@@ -21,76 +22,36 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/info_text"
+                android:id="@+id/sanalkarnePetText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="top|center"
-                android:text="SME Veteriner"
-                android:textColor="#e67e22"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textColor="#fb4040"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/img" />
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="50dp">
-
-                <EditText
-                    android:id="@+id/loginMailAdress"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Mail Adresinizi Giriniz..." />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="50dp">
-
-                <EditText
-                    android:id="@+id/loginPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Şifre Giriniz..."
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/sanalKarnePetImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center" />
 
             <TextView
-                android:id="@+id/loginText"
+                android:id="@+id/sanalKarneBilgiText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="30dp"
-                android:gravity="right"
-                android:text="Kayıt ol..."
-                android:textColor="#e67e22" />
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textColor="#122f3d"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittextbackground"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-
-                android:text="Giris Yap" />
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
