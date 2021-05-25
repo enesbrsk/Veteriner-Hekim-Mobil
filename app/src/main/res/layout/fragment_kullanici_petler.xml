@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.KullaniciPetlerFragment">
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:visibility="gone"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_above="@+id/userPetEkle"
+      android:id="@+id/userPetListRecylerView">
+
+
+  </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/user"
+        android:id="@+id/petEkleResimYok"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="25dp"
+        android:id="@+id/petEkleUyarıText"
+        android:textStyle="bold"
+        android:layout_below="@+id/petEkleResimYok"
+        android:text="Bu Kullanıcıya Ait Pet Yoktur..!"/>
+
+    <Button
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:id="@+id/userPetEkle"
+        android:text="Kullanıcıya Yeni Pet Ekle"
+        android:layout_alignParentBottom="true"
+        android:textSize="18dp"
+        android:background="@drawable/edittextbackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</RelativeLayout>

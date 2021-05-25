@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff7e5"
+    tools:context=".Activities.MainAdminActivity">
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/anasayfaAdminlinearlayout"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="#fff7e5"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="20dp"
+        tools:ignore="MissingConstraints">
+
+
+        <FrameLayout
+
+            android:id="@+id/mainFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+
+        android:background="#fff7e5"
+        android:id="@+id/anasayfaAdminlinearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/anasayfaAdminButon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/edittextbackground"
+
+            android:text="Ana Sayfa" />
+
+        <Button
+            android:id="@+id/aramaYapAdminButon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/edittextbackground"
+            android:text="Arama Yap" />
+
+    </LinearLayout>
+</RelativeLayout>

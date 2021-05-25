@@ -15,6 +15,9 @@
         <activity android:name=".Activities.MainActivity" >
         </activity>
         <activity android:name=".Activities.KayitOlActivity" />
+        <activity android:name=".Activities.GirisYapAdminActivity" />
+        <activity android:name=".Activities.MainAdminActivity" />
+
         <activity android:name=".Activities.GirisYapActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

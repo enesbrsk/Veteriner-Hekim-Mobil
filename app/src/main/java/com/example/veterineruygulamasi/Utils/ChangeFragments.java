@@ -33,4 +33,15 @@ public class ChangeFragments {
                 .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
 
     }
+
+    public void changeParametre2(Fragment fragment,String petId)
+    {
+        Bundle bundle = new Bundle();
+        bundle.putString("userid",petId);
+        fragment.setArguments(bundle);
+
+        ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,fragment,"fragment")
+                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+
+    }
 }

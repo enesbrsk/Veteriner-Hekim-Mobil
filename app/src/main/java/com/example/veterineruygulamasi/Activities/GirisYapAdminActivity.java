@@ -1,7 +1,5 @@
 package com.example.veterineruygulamasi.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,47 +8,52 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+
 import com.example.veterineruygulamasi.Models.LoginModel;
 import com.example.veterineruygulamasi.R;
 import com.example.veterineruygulamasi.RestApi.ManagerAll;
+import com.example.veterineruygulamasi.Utils.ChangeFragments;
 import com.example.veterineruygulamasi.Utils.GetSharedPreferences;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GirisYapActivity extends AppCompatActivity {
+public class GirisYapAdminActivity extends AppCompatActivity {
 
-    private EditText loginMailAdres,loginPassword;
-    private TextView loginText,AdminText;
-    private Button loginButton;
+    private EditText loginMailAdressAdmin,loginPasswordAdmin;
+    private TextView loginText;
+    private Button loginButtonAdmin;
+    private ChangeFragments changeFragments;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_giris_yap);
+        setContentView(R.layout.activity_giris_yap_admin);
         tanimla();
         click();
     }
 
     public void tanimla()
     {
-
-        loginMailAdres=(EditText)findViewById(R.id.loginMailAdress);
-        loginPassword=(EditText)findViewById(R.id.loginPassword);
+        loginMailAdressAdmin=(EditText)findViewById(R.id.loginMailAdressAdmin);
+        loginPasswordAdmin=(EditText)findViewById(R.id.loginPasswordAdmin);
         loginText=(TextView)findViewById(R.id.loginText);
-        AdminText=(TextView)findViewById(R.id.AdminText);
+        loginButtonAdmin=(Button)findViewById(R.id.loginButtonAdmin);
 
-        loginButton=(Button)findViewById(R.id.loginButton);
+
 
     }
 
     public void click(){
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButtonAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mail= loginMailAdres.getText().toString();
-                String pass = loginPassword.getText().toString();
+                String mail= loginMailAdressAdmin.getText().toString();
+                String pass = loginPasswordAdmin.getText().toString();
                 login(mail,pass);
                 delete();
             }
@@ -58,16 +61,7 @@ public class GirisYapActivity extends AppCompatActivity {
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(GirisYapActivity.this,KayitOlActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        AdminText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(GirisYapActivity.this,GirisYapAdminActivity.class);
+                Intent intent=new Intent(GirisYapAdminActivity.this,KayitOlActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -75,12 +69,12 @@ public class GirisYapActivity extends AppCompatActivity {
     }
 
     public void delete(){
-        loginMailAdres.setText("");
-        loginPassword.setText("");
+        loginMailAdressAdmin.setText("");
+        loginPasswordAdmin.setText("");
     }
 
     public void login(String mailAdres,String parola){
-        Call<LoginModel> req= ManagerAll.getInstance().girisYap(mailAdres,parola);
+        Call<LoginModel> req= ManagerAll.getInstance().girisYapAdmin(mailAdres,parola);
 
         req.enqueue(new Callback<LoginModel>() {
             @Override
@@ -88,11 +82,12 @@ public class GirisYapActivity extends AppCompatActivity {
                 if (response.body().isTf())
                 {
                     Toast.makeText(getApplicationContext(),response.body().getText(),Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(GirisYapActivity.this,MainActivity.class);
-                    GetSharedPreferences getSharedPreferences = new GetSharedPreferences(GirisYapActivity.this);
+                    Intent intent=new Intent(GirisYapAdminActivity.this,MainAdminActivity.class);
+                    GetSharedPreferences getSharedPreferences = new GetSharedPreferences(GirisYapAdminActivity.this);
                     getSharedPreferences.setSession(response.body().getId(),response.body().getUsername(),response.body().getMailadres());
                     startActivity(intent);
                     finish();
+
 
                 }else {
                     Toast.makeText(getApplicationContext(),response.body().getText(),Toast.LENGTH_LONG).show();
@@ -102,7 +97,7 @@ public class GirisYapActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
-                Toast.makeText(GirisYapActivity.this, "Lütfen Tekrar Deneyiniz", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GirisYapAdminActivity.this, "Lütfen Tekrar Deneyiniz", Toast.LENGTH_SHORT).show();
 
             }
         });

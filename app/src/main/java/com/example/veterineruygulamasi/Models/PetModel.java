@@ -59,16 +59,16 @@ public class PetModel{
     }
 
     @Override
-     public String toString(){
-        return 
-            "PetModel{" + 
-            "tf = '" + tf + '\'' + 
-            ",petid = '" + petid + '\'' + 
-            ",petresim = '" + petresim + '\'' + 
+    public String toString(){
+        return
+                "PetModel{" +
+                        "tf = '" + tf + '\'' +
+                        ",petid = '" + petid + '\'' +
+                        ",petresim = '" + petresim + '\'' +
 
-            ",pettur = '" + pettur + '\'' + 
-            ",petisim = '" + petisim + '\'' + 
-            ",petcins = '" + petcins + '\'' + 
-            "}";
-        }
+                        ",pettur = '" + pettur + '\'' +
+                        ",petisim = '" + petisim + '\'' +
+                        ",petcins = '" + petcins + '\'' +
+                        "}";
+    }
 }
