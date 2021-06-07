@@ -40,6 +40,7 @@ public class SorularFragment extends Fragment {
         tanimla();
         istekAt();
         return view;
+
     }
 
     public void tanimla()

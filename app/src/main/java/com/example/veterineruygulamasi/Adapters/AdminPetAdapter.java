@@ -30,7 +30,13 @@ import com.example.veterineruygulamasi.RestApi.ManagerAll;
 import com.example.veterineruygulamasi.Utils.ChangeFragments;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +50,8 @@ public class AdminPetAdapter extends RecyclerView.Adapter<AdminPetAdapter.ViewHo
     Activity activity;
     ChangeFragments changeFragments;
     String musid;
-    String tarih = "";
+    String tarih = "",formatliTarih="";
+    Date date;
 
     public AdminPetAdapter(List<PetAdminModel> list, Context context, Activity activity,String musid) {
         this.list = list;
@@ -114,6 +121,7 @@ public class AdminPetAdapter extends RecyclerView.Adapter<AdminPetAdapter.ViewHo
         View view = layoutInflater.inflate(R.layout.asieklelayout,null);
 
         CalendarView calendarView = view.findViewById(R.id.asiEkleTakvim);
+
         final EditText asiEkleAsiName = view.findViewById(R.id.asiEkleAsiName);
         Button asiEkleButon = view.findViewById(R.id.asiEkleButon);
 
@@ -127,19 +135,36 @@ public class AdminPetAdapter extends RecyclerView.Adapter<AdminPetAdapter.ViewHo
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                tarih = dayOfMonth+"/ "+ (month+1)+"/ "+ year;
-                Toast.makeText(context, tarih, Toast.LENGTH_SHORT).show();
+
+
+                DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+                tarih = dayOfMonth+"/"+ (month+1)+"/"+ year;
+
+                try {
+                    date = inputFormat.parse(tarih);
+                    formatliTarih = format.format(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         });
         asiEkleButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!tarih.equals("") && !asiEkleAsiName.getText().toString().equals("")){
-                    addAsi(musid,petId,asiEkleAsiName.getText().toString(),tarih,alertDialog);
+
+
+                if (!formatliTarih.equals("") && !asiEkleAsiName.getText().toString().equals("") && !date.before(Calendar.getInstance().getTime()) ){
+
+                    addAsi(musid,petId,asiEkleAsiName.getText().toString(),formatliTarih,alertDialog);
                     
                 }
                 else {
-                    Toast.makeText(context, "Lütfen Boş Alan Bırakmayınız ..!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Lütfen Boş Alan Bırakmayınız ya da İleri Bir Tarihte Aşı Seçiniz..!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

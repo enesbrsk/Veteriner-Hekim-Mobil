@@ -49,8 +49,8 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-holder.cevapCevapText.setText(list.get(position).getCevap().toString());
-holder.cevapSoruText.setText(list.get(position).getSoru().toString());
+holder.cevapCevapText.setText("Cevap: "+list.get(position).getCevap().toString());
+holder.cevapSoruText.setText("Soru: " +list.get(position).getSoru().toString());
 
 holder.cevapSilButon.setOnClickListener(new View.OnClickListener() {
     @Override
