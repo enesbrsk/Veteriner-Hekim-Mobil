@@ -154,6 +154,8 @@ public class ManagerAll extends BaseManager{
         return  x ;
     }
 
+
+
     public Call<PetEkle> petEkle(String musid,String isim, String tur, String cins,String resim)
     {
         Call<PetEkle> x = getRestApi().petEkle(musid,isim,tur,cins,resim);
